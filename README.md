@@ -53,18 +53,12 @@ Está configurado como un servicio global (providedIn: 'root') para que pueda se
 
 Ubicación: src/app/services/user.service.ts
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UserService {
+
   private apiUrl = 'https://api.escuelajs.co/api/v1/users';
 
-  constructor(private http: HttpClient) {}
-
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<User[]>
     return this.http.get<User[]>(this.apiUrl);
-  }
-}
+
 
 Cómo Funciona 
 
