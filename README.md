@@ -66,7 +66,7 @@ export class UserService {
   }
 }
 
-Cómo Funciona
+Cómo Funciona 
 
 Propiedad apiUrl:
 
@@ -75,6 +75,7 @@ Define la URL base de la API para obtener los datos de usuarios.
 Método getUsers:
 
 Realiza una solicitud HTTP GET a la URL definida.
+
 Retorna un Observable que emite un arreglo de objetos User (basados en la interfaz User).
 
 Uso del Servicio en el Componente:
@@ -88,70 +89,10 @@ El UsersComponent es un componente de tipo standalone que muestra los usuarios o
 Ubicación: src/app/components/users.component.ts
 
 
-export class UsersComponent implements OnInit {
-  users: User[] = [];
-  displayedUsers: User[] = [];
-  loading = true;
-  currentPage = 1;
-  pageSize = 10;
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit() {
-    this.loadUsers();
-  }
-
-  loadUsers() {
-    this.loading = true;
-    this.userService.getUsers().subscribe({
-      next: (data) => {
-        this.users = data;
-        this.updateDisplayedUsers();
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error fetching users:', error);
-        this.loading = false;
-      }
-    });
-  }
-
-  updateDisplayedUsers() {
-    const start = (this.currentPage - 1) * this.pageSize;
-    const end = start + this.pageSize;
-    this.displayedUsers = this.users.slice(start, end);
-  }
-
-  nextPage() {
-    if (this.endIndex < this.users.length) {
-      this.currentPage++;
-      this.updateDisplayedUsers();
-    }
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updateDisplayedUsers();
-    }
-  }
-
-  get startIndex(): number {
-    return (this.currentPage - 1) * this.pageSize;
-  }
-
-  get endIndex(): number {
-    return Math.min(this.startIndex + this.pageSize, this.users.length);
-  }
-
-  trackByUserId(index: number, user: User): number {
-    return user.id;
-  }
-}
-
 Funcionamiento Interno
 --------------------
 Propiedades:
+
 users: Contiene todos los usuarios obtenidos desde la API.
 
 displayedUsers: Contiene solo los usuarios visibles en la página actual.
@@ -163,6 +104,7 @@ currentPage y pageSize: Manejan la lógica de paginación.
 Métodos:
 
 loadUsers:
+
 Llama al servicio UserService para obtener los usuarios.
 Suscribe a la respuesta de la API y actualiza users y displayedUsers.
 
@@ -181,11 +123,17 @@ En el método ngOnInit, se llama a loadUsers para cargar los datos al inicializa
 La plantilla utiliza *ngIf para mostrar un indicador de carga o los datos una vez que están disponibles. Además, incluye una tabla con usuarios y botones de paginación.
 
 html estos son algunos datos que continene la tabla de usuarios son mas en la API pero pues con esos son los mas indispensables
+
                 <th>ID</th>
+
                 <th>Name</th>
+
                 <th>Email</th>
+
                 <th>Role</th>
+
                 <th>Password</th>
+
                 <th>Avatar</th>
           
    
@@ -193,13 +141,14 @@ html estos son algunos datos que continene la tabla de usuarios son mas en la AP
 
 La lista de los usuarios se puede obtener mediante la API, pero para fines de este ejemplo, se utilizarán los siguientes por que pueden cambiar sin previo aviso
 
-[Lista de usuarios] (<src/assets/images/LISTA DE USUARIOS API.png>)
+
+![Lista de usuarios](src/assets/images/LISTA%20DE%20USUARIOS%20API.png)
 
 Una vez adentro podemos observar nuestro dashbard que hace referencia a la siguiente imagen:
 
-[DashBoard] (<src/assets/images/DASHBOARD.png>)
+![DashBoard](src/assets/images/DASHBOARD.png)
 
 Para comprobar que estamos haciendo buen eso de la api podemos verla a traves de la tabla que muestra los datos de los usuarios que se encuentran en la siguiente imagen:
 
-[Tabla de usuarios] (<src/assets/images/USUARIOS.png>)
+![Tabla de usuarios](src/assets/images/USUARIOS.png)
 
