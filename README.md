@@ -135,6 +135,7 @@ html estos son algunos datos que continene la tabla de usuarios son mas en la AP
 
 La lista de los usuarios se puede obtener mediante la API, pero para fines de este ejemplo, se utilizarán los siguientes por que pueden cambiar sin previo aviso
 
+RECUERDA "admin" y password "1234"
 
 ![Lista de usuarios](src/assets/images/LISTA%20DE%20USUARIOS%20API.png)
 
